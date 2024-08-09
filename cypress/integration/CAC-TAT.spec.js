@@ -46,7 +46,7 @@ it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é p
     cy.get('.error').should('be.visible')
 })
 
-it('preenche e limpa os campos nome, sobrenome, email e telefone', function() {
+ it('preenche e limpa os campos nome, sobrenome, email e telefone', function() {
     cy.get('#firstName')
     .type('Victor')
     .should('have.value', 'Victor')
@@ -68,4 +68,10 @@ it('preenche e limpa os campos nome, sobrenome, email e telefone', function() {
     .clear()
     .should('have.value', '')
 })
+
+ it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', function() {
+    cy.get('button[type="submit"]').click()
+
+    cy.get('.error').should('be.visible')
+ })
 })
