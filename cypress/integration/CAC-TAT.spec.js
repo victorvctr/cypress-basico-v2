@@ -14,7 +14,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('#lastName').type('Rodrigues')
         cy.get('#email').type('victor@exemplo.com')
         cy.get('#open-text-area').type(longText, {delay: 0})
-        cy.get('button[type="submit"]').click()
+        cy.contains('button', 'Enviar').click()
 
         cy.get('.success').should('be.visible')
     })
@@ -24,7 +24,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('#lastName').type('Rodrigues')
         cy.get('#email').type('victor@exemplo,com')
         cy.get('#open-text-area').type('Teste')
-        cy.get('button[type="submit"]').click()
+        cy.contains('button', 'Enviar').click()
 
         cy.get('.error').should('be.visible')
   })
@@ -41,7 +41,7 @@ it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é p
     cy.get('#email').type('victor@exemplo.com')
     cy.get('#phone-checkbox').click()
     cy.get('#open-text-area').type('Teste')
-    cy.get('button[type="submit"]').click()
+    cy.contains('button', 'Enviar').click()
 
     cy.get('.error').should('be.visible')
 })
@@ -70,7 +70,7 @@ it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é p
 })
 
  it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', function() {
-    cy.get('button[type="submit"]').click()
+    cy.contains('button', 'Enviar').click()
 
     cy.get('.error').should('be.visible')
     
