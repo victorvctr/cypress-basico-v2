@@ -19,7 +19,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('.success').should('be.visible')
     })
 
-    it.only('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function() {
+    it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function() {
     cy.get('#firstName').type('Victor')
         cy.get('#lastName').type('Rodrigues')
         cy.get('#email').type('victor@exemplo,com')
@@ -29,7 +29,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('.error').should('be.visible')
   })
 
-  it.only( 'campo telefone continua vazio quando preenchido com valor não numérico', function() {
+  it( 'campo telefone continua vazio quando preenchido com valor não numérico', function() {
   cy.get('#phone')
   .type('abcdefghij')
   .should('have.value', '')
@@ -46,4 +46,26 @@ it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é p
     cy.get('.error').should('be.visible')
 })
 
+it('preenche e limpa os campos nome, sobrenome, email e telefone', function() {
+    cy.get('#firstName')
+    .type('Victor')
+    .should('have.value', 'Victor')
+    .clear()
+    .should('have.value', '')
+    cy.get('#lastName')
+    .type('Rodrigues')
+    .should('have.value', 'Rodrigues')
+    .clear()
+    .should('have.value', '')
+    cy.get('#email')
+    .type('victor@exemplo.com')
+    .should('have.value', 'victor@exemplo.com')
+    .clear()
+    .should('have.value', '')
+    cy.get('#phone')
+    .type('1234567890')
+    .should('have.value', '1234567890')
+    .clear()
+    .should('have.value', '')
+})
 })
