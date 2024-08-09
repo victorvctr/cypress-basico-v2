@@ -73,5 +73,11 @@ it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é p
     cy.get('button[type="submit"]').click()
 
     cy.get('.error').should('be.visible')
+    
+ })
+ it('envia o formuário com sucesso usando um comando customizado', function() {
+    cy.fillMandatoryFieldsAndSubmit()
+
+    cy.get('.success').should('be.visible')
  })
 })
