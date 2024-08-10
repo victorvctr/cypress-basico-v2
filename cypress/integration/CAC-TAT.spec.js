@@ -80,4 +80,9 @@ it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é p
 
     cy.get('.success').should('be.visible')
  })
+ it.only('seleciona um produto (YouTube) por seu texto', function() {
+    cy.get('#product')
+    .select('YouTube')
+    .should('have.value', 'youtube')
+ })
 })
