@@ -35,7 +35,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
   .should('have.value', '')
 })
 
-it.only('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
+it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
     cy.get('#firstName').type('Victor')
     cy.get('#lastName').type('Rodrigues')
     cy.get('#email').type('victor@exemplo.com')
@@ -117,5 +117,14 @@ cy.get('input[type="radio"]')
     .last()
     .uncheck()
     .should('not.be.checked')
+ })
+ it.only('seleciona um arquivo da pasta fixtures', function() {
+    cy.get('input[type="file"]')
+    .should('not.have.value')
+    .selectFile('./cypress/fixtures/example.json')
+    .should(function($input) {
+        console.log($input)
+        expect($input[0].files[0].name).to.equal('example.json')
+    })
  })
 })
